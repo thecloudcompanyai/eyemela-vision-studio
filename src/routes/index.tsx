@@ -1,6 +1,9 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
 import frames from "@/assets/frames.jpg";
+import frameSquare from "@/assets/frame-square-black.jpg";
+import frameWayfarer from "@/assets/frame-wayfarer-black.jpg";
+import frameFlatTop from "@/assets/frame-flattop-gold.jpg";
 import { EyewearHero } from "@/components/eyewear-hero";
 
 export const Route = createFileRoute("/")({
@@ -30,11 +33,23 @@ const directions = STORE.address
   ? `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(`${STORE.name} ${STORE.address}`)}`
   : wa("Hi Eyemela! Please share your store address and directions.");
 
-const products = [
+type Product = {
+  name: string;
+  color: string;
+  price: number;
+  mrp: number;
+  pos?: string;
+  img?: string;
+};
+
+const products: Product[] = [
   { name: "Classic Round", color: "Matte Black", price: 999, mrp: 1999, pos: "0% 0%" },
   { name: "Gold Aviator", color: "Gold Metal", price: 1499, mrp: 2999, pos: "100% 0%" },
   { name: "Cat-Eye Luxe", color: "Tortoise", price: 1299, mrp: 2499, pos: "0% 100%" },
   { name: "Clear Square", color: "Transparent", price: 899, mrp: 1799, pos: "100% 100%" },
+  { name: "Bold Square", color: "Glossy Black", price: 1500, mrp: 4000, img: frameSquare },
+  { name: "Classic Wayfarer", color: "Matte Black", price: 1500, mrp: 4000, img: frameWayfarer },
+  { name: "Flat-Top Gold Bar", color: "Black with Gold Bar", price: 1500, mrp: 4000, img: frameFlatTop },
 ];
 
 const rows = [
@@ -93,10 +108,15 @@ function Index() {
           {products.map((p) => (
             <div key={p.name} className="group overflow-hidden rounded-2xl border border-border bg-card transition hover:-translate-y-1 hover:shadow-xl">
               <div className="relative aspect-square overflow-hidden bg-muted">
-                <div className="h-full w-full transition duration-500 group-hover:scale-110"
-                  style={{ backgroundImage: `url(${frames})`, backgroundSize: "200% 200%", backgroundPosition: p.pos }} />
+                {p.img ? (
+                  <img src={p.img} alt={`${p.name} sunglasses`} loading="lazy"
+                    className="h-full w-full object-cover transition duration-500 group-hover:scale-110" />
+                ) : (
+                  <div className="h-full w-full transition duration-500 group-hover:scale-110"
+                    style={{ backgroundImage: `url(${frames})`, backgroundSize: "200% 200%", backgroundPosition: p.pos }} />
+                )}
                 <span className="absolute left-3 top-3 rounded-full bg-destructive px-2 py-0.5 text-xs font-bold text-destructive-foreground">
-                  50% OFF
+                  {Math.round((1 - p.price / p.mrp) * 100)}% OFF
                 </span>
               </div>
               <div className="p-5">
