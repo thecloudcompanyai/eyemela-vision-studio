@@ -43,13 +43,13 @@ type Product = {
 };
 
 const products: Product[] = [
+  { name: "Bold Square", color: "Glossy Black", price: 1500, mrp: 4000, img: frameSquare },
+  { name: "Classic Wayfarer", color: "Matte Black", price: 1500, mrp: 4000, img: frameWayfarer },
+  { name: "Flat-Top Gold Bar", color: "Black with Gold Bar", price: 1500, mrp: 4000, img: frameFlatTop },
   { name: "Classic Round", color: "Matte Black", price: 999, mrp: 1999, pos: "0% 0%" },
   { name: "Gold Aviator", color: "Gold Metal", price: 1499, mrp: 2999, pos: "100% 0%" },
   { name: "Cat-Eye Luxe", color: "Tortoise", price: 1299, mrp: 2499, pos: "0% 100%" },
   { name: "Clear Square", color: "Transparent", price: 899, mrp: 1799, pos: "100% 100%" },
-  { name: "Bold Square", color: "Glossy Black", price: 1500, mrp: 4000, img: frameSquare },
-  { name: "Classic Wayfarer", color: "Matte Black", price: 1500, mrp: 4000, img: frameWayfarer },
-  { name: "Flat-Top Gold Bar", color: "Black with Gold Bar", price: 1500, mrp: 4000, img: frameFlatTop },
 ];
 
 const rows = [
